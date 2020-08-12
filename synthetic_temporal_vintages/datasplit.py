@@ -64,39 +64,3 @@ def datasplit(df, t_size, proportion, label, encoding):
     t.reset_index(inplace=True)
 
     return train, t1, t2, t
-
-
-def printer(df, train, t1, t2, t3, label):
-    print('Full Dataset: ', df.shape)
-    print('Training shape: ', train.shape)
-    print('t1 shape: ', t1.shape)
-    print('t2 shape: ', t2.shape)
-    print('t3 shape: ', t3.shape)
-    print('% of Dataset: ', [train.shape[0]/df.shape[0], t1.shape[0] /
-                             df.shape[0], t2.shape[0]/df.shape[0], t3.shape[0]/df.shape[0]])
-    print()
-    print('Training Classifier Distribution:', min(
-        train[label].mean(), 1-train[label].mean()))
-    print(train[label].value_counts())
-    print()
-    print('t1 Classifier Distribution:', min(
-        t1[label].mean(), 1-t1[label].mean()))
-    print(t1[label].value_counts())
-    print()
-    print('t2 Classifier Distribution:', min(
-        t2[label].mean(), 1-t2[label].mean()))
-    print(t2[label].value_counts())
-    print()
-    print('t3 Classifier Distribution:', min(
-        t3[label].mean(), 1-t3[label].mean()))
-    print(t3[label].value_counts())
-    fig = plt.figure()
-    ax = fig.add_axes([0, 0, 1, 1])
-    ax.set_title('Distribution of Classifier in Tables')
-    ax.set_xlabel('Table')
-    ax.set_ylabel('Fraction of Classifer')
-    l = ['train', 't1', 't2', 't3']
-    v = [min(train[label].mean(), 1-train[label].mean()), min(t1[label].mean(), 1-t1[label].mean()),
-         min(t2[label].mean(), 1-t2[label].mean()), min(t3[label].mean(), 1-t3[label].mean())]
-    ax.bar(l, v)
-    plt.show()
